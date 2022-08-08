@@ -1,0 +1,26 @@
+# Create PaymentMethod
+POST http://localhost:3005/payment_methods
+content-type: application/json
+
+{
+    "payment_method": {
+        "card_number": "4444 5555 6666 7777 8888",
+        "expiration_date": "Mon, 01 Jan -4712",
+        "security_code": "123",
+        "issuer": "Banco Patagonia",
+        "card_holder_name": "Ezequiel Salas",
+        "user_id": "5"
+    }
+}
+###
+# Get all PaymentMethods
+GET http://localhost:3005/payment_methods
+content-type: application/json
+###
+# Show PaymentMethod
+GET http://localhost:3005/payment_methods/62f03e1f698857e7f030b44e
+content-type: application/json
+###
+# Delete PaymentMethod
+DELETE http://localhost:3005/payment_methods/62f03645698857b5fcd5dd04
+
