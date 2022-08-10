@@ -12,7 +12,7 @@ class PaymentMethod
   field :security_code, type: Integer
   field :card_holder_name, type: String
   field :issuer, type: String
-  field :user_id, type: String 
+  field :user_id, type: String
 
   ##############################################################################
   # FIELDS VALIDATIONS
