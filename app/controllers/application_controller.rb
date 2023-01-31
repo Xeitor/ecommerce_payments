@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
+  before_action :validate_user
+
   rescue_from ::Exception do |exception|
-    puts exception
     render_error :server_error
   end
 
@@ -8,8 +9,6 @@ class ApplicationController < ActionController::API
     render_error :not_found
   end
 
-
-  # before_action :validate_user
   def render_error(error_code, errors = {})
     status, msg = case error_code
                   when :invalid          then [400, 'Invalid record']
@@ -21,15 +20,28 @@ class ApplicationController < ActionController::API
                   end
 
     render json: {
-      status:,
+      status: status,
       message: msg,
-      errors:
+      errors: errors
     }
   end
 
   private
 
+  def validate_user
+    Current.user = TokenService.validate_user(token)
+    render_error :unauthorized unless Current.user
+  rescue TokenService::AuthorizationError => e
+    render_error :unauthorized
+  rescue StandardError => e
+    render_error :server_error
+  end
+
+  def token
+    request.headers['Authorization'].match(/bearer (.+)/).captures.first
+  end
+
   def record_not_found(error)
-    render json: { error: err }, status: :not_found
-  end 
+    render json: { error: }, status: :not_found
+  end
 end

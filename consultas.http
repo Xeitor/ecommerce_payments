@@ -1,0 +1,28 @@
+# Login
+POST  http://localhost:3000/v1/user/signin
+content-type: application/json
+
+{
+    "login": "admin@ecommerce.com",
+    "password": "admin" 
+}
+###
+GET  http://localhost:3000/v1/users/current
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjM0YWNjZGIyNDI2Y2Q0NjRjNzJmZDA5IiwidXNlcklEIjoiNjM0YWNjZGIyNDI2Y2Q0NjRjNzJmZDA4In0.hVA6P3hpTpMrIRTh5IXVjU9_TdeHqrrU0nSEp6GJhB8
+
+
+###
+GET http://localhost:3004/v1/orders
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjM0YWNmZjM1M2MzZDkyYjEzNzExNWI4IiwidXNlcklEIjoiNjM0YWNjZGIyNDI2Y2Q0NjRjNzJmZDA4In0.QxHW8Groqe4sb9MFWg_g1RUk0CvLoNV1eJuO9-89CVY
+
+###
+GET http://localhost:3002/v1/articles/634abbcc3cdea2007451ceb7
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjM0YWNmZjM1M2MzZDkyYjEzNzExNWI4IiwidXNlcklEIjoiNjM0YWNjZGIyNDI2Y2Q0NjRjNzJmZDA4In0.QxHW8Groqe4sb9MFWg_g1RUk0CvLoNV1eJuO9-89CVY
+
+
+
+
+
+###
+GET http://localhost:3004/v1/orders_batch/validated
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjM0YWRhY2ExZDhlNjAxZGM0NDM2M2M5IiwidXNlcklEIjoiNjM0YWRhY2ExZDhlNjAxZGM0NDM2M2M4In0.PT_Rm6eMhas5SbgcdGXWn1DwPHK3dgA2AcyonYKSyzA

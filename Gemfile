@@ -7,7 +7,17 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 
 # Mongo
-gem 'mongoid', '~> 8.0', '>= 8.0.2'
+gem 'mongoid'
+gem "mongoid-enum", :git => 'https://github.com/choilive/mongoid-enum.git'
+
+# Rabbit
+gem "bunny", ">= 2.19.0"
+
+# Http requests
+gem 'faraday'
+
+gem 'rack-cors'
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

@@ -1,12 +1,11 @@
 class PaymentMethodsController < ApplicationController
-  before_action :set_payment_method, only: %i[ show update destroy ]
-  # before_action :validate_user
+  before_action :set_payment_method, only: %i[show update destroy]
 
   # GET /payment_methods
   def index
-    @payment_methods = PaymentMethod.all
+    @payment_methods = PaymentMethod.where(user_id: Current.user.id)
 
-    render json: @payment_methods
+    render json: @payment_methods.as_json(methods: :id)
   end
 
   # GET /payment_methods/1
@@ -17,6 +16,7 @@ class PaymentMethodsController < ApplicationController
   # POST /payment_methods
   def create
     @payment_method = PaymentMethod.new(payment_method_params)
+    @payment_method.user_id = Current.user.id
 
     if @payment_method.save
       render json: @payment_method, status: :created, location: @payment_method
@@ -46,7 +46,6 @@ class PaymentMethodsController < ApplicationController
                                            :expiration_date,
                                            :security_code,
                                            :card_holder_name,
-                                           :issuer,
-                                           :user_id)
+                                           :issuer)
   end
 end

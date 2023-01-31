@@ -1,6 +1,7 @@
 # Create PaymentMethod
-POST http://localhost:3005/payment_methods
+POST http://localhost:3008/payment_methods
 content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjM0YWNmZjM1M2MzZDkyYjEzNzExNWI4IiwidXNlcklEIjoiNjM0YWNjZGIyNDI2Y2Q0NjRjNzJmZDA4In0.QxHW8Groqe4sb9MFWg_g1RUk0CvLoNV1eJuO9-89CVY
 
 {
     "payment_method": {
@@ -14,13 +15,19 @@ content-type: application/json
 }
 ###
 # Get all PaymentMethods
-GET http://localhost:3005/payment_methods
+GET http://localhost:3008/payment_methods
 content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjJmZDVhMDQyNjhjY2JjODk1MmZiMzE2IiwidXNlcklEIjoiNjJlODhjNTEyYzQxNmJjZWU4NTEwODZkIn0.5v6uSKG6ZI5mE2cLMy5mbXphPBM4S1IqT08lUwAKqmY
+
 ###
 # Show PaymentMethod
 GET http://localhost:3005/payment_methods/62f03e1f698857e7f030b44e
 content-type: application/json
 ###
 # Delete PaymentMethod
-DELETE http://localhost:3005/payment_methods/62f03645698857b5fcd5dd04
+DELETE http://localhost:3008/payment_methods/630bce4f6988578217b6cfb7
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjJmZDVhMDQyNjhjY2JjODk1MmZiMzE2IiwidXNlcklEIjoiNjJlODhjNTEyYzQxNmJjZWU4NTEwODZkIn0.5v6uSKG6ZI5mE2cLMy5mbXphPBM4S1IqT08lUwAKqmY
 
+###
+GET  http://localhost:3000/v1/users/current
+Authorization: bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklEIjoiNjJmOTZlYzZjOGMxMzBkMGY5MmZmY2RlIiwidXNlcklEIjoiNjJlODhjNTEyYzQxNmJjZWU4NTEwODZkIn0.ycLWXg8Wz5X5X6C6F-VlzOZPW09yMCzj1m7GjyeYgDk
