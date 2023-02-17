@@ -12,7 +12,11 @@ class RabbitController
       user_id: message[:userId]
     }
     payment = Payment.find_or_initialize_by(order_id: payment_data[:order_id])
-    payment.process_payment
+    unless payment.persisted?
+      payment.assign_attributes(payment_data)
+      payment.save!
+      payment.process_payment
+    end
 
     message = {
       type: 'payment_state_update',
@@ -24,6 +28,17 @@ class RabbitController
       }
     }
 
+    Rabbit::TopicPublisher.publish(exchange_name: 'sell_flow', routing_key: 'payment_state_update', message:)
+  rescue StandardError => e
+    puts e
+    message = {
+      type: 'payment_state_update',
+      message: {
+        orderId: message[:orderId],
+        paymentState: :fail,
+        paymentErrors: "exception"
+      }
+    }
     Rabbit::TopicPublisher.publish(exchange_name: 'sell_flow', routing_key: 'payment_state_update', message:)
   end
 
