@@ -3,7 +3,7 @@ class PaymentMethodsController < ApplicationController
 
   # GET /payment_methods
   def index
-    @payment_methods = PaymentMethod.where(user_id: Current.user.id)
+    @payment_methods = PaymentMethod.where(user_id: Current.user.id, active: true)
 
     render json: @payment_methods.as_json(methods: :id)
   end

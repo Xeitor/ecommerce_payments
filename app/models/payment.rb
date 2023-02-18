@@ -27,11 +27,16 @@ class Payment
   validates :order_id, :amount, presence: true
   validates :order_id, uniqueness: true # solo puede haber un pago por order
   validate :payment_method_belongs_to_user
+  validate :payment_method_is_active
 
   def payment_method_belongs_to_user
     return if payment_method&.user_id == user_id
 
     errors.add("payment_method_id", "payment_method_id does not belong to user")
+  end
+
+  def payment_method_is_active
+    errors.add("payment_method_id", "inactive payment_method") unless payment_method&.active
   end
 
   def process_payment

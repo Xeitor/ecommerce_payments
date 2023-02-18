@@ -13,7 +13,13 @@ class PaymentMethod
   field :card_holder_name, type: String
   field :issuer, type: String
   field :user_id, type: String
-  field :deleted_at, type: DateTime, default: false
+  field :active, type: Boolean
+
+  before_create :set_active_to_true
+
+  def set_active_to_true
+    self.active = true
+  end
 
   ##############################################################################
   # FIELDS VALIDATIONS
@@ -22,5 +28,9 @@ class PaymentMethod
             :issuer, :user_id, presence: true
   def id
     _id.to_s
+  end
+
+  def destroy
+    update!(active: false)
   end
 end
